@@ -1,30 +1,31 @@
 # aws-infra-terraform
 
-Modular, scalable Terraform AWS infrastructure for VPC, EC2, IAM, and security. Designed to be easily extendable and production-ready.
+Modular, scalable Terraform AWS infrastructure for VPC, EC2, IAM, and security. Designed for extendable, production-ready deployments.
 
 ## Overview
 
-This repo contains Terraform code to provision foundational AWS resources including:
+This repository contains Terraform code to provision foundational AWS resources using a modular approach:
 
 - VPC, Subnets, Internet Gateway, Route Tables  
 - EC2 instances with IAM roles and security groups  
 - IAM roles, policies, and instance profiles  
-- Secure management via AWS Systems Manager (SSM)  
+- Secure instance management via AWS Systems Manager (SSM)  
 
 ## Structure
 
-- `vpc.tf` — Network components  
-- `ec2.tf` — EC2 instance resources  
-- `iam.tf` — IAM roles and policies  
+- `modules/vpc/` — Network components (VPC, subnets, IGW, route tables, security groups)  
+- `modules/ec2/` — EC2 instance resources  
+- `modules/iam/` — IAM roles, policies, and instance profiles  
 - `key_pair.tf` — SSH key pair management  
 - `outputs.tf` — Outputs for important resource info  
 - `provider.tf` — AWS provider configuration  
-- `variables.tf` — Variables definitions  
+- `variables.tf` — Variable definitions  
 
 ## Important
 
-`terraform.tfvars` is excluded from version control as it contains sensitive environment-specific values like IP addresses and keys.
+- `terraform.tfvars` is excluded from version control as it contains sensitive, environment-specific values like IP addresses and keys.  
+- The root folder contains only module calls and minimal glue code; all main resources are managed inside modules.  
 
 ## Notes
 
-This is a work in progress aiming for production-grade AWS infrastructure automation, built with best practices for security and maintainability.
+This repo is a work in progress for building production-grade, modular AWS infrastructure automation, following best practices for security and maintainability.
