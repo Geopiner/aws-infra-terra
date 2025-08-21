@@ -1,4 +1,21 @@
-terraform.tfvars
+# Terraform state files
 *.tfstate
 *.tfstate.backup
-.terraform/.vscode/
+
+# Crash logs
+crash.log
+
+# CLI configuration files
+.terraform/
+
+# Sensitive variable files
+terraform.tfvars
+
+# Terraform lock file
+.terraform.lock.hcl
+
+# OS files
+.DS_Store
+
+# VSCode settings folder
+.vscode/
