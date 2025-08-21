@@ -1,20 +1,20 @@
-resource "aws_iam_role" "ec2_role" {
-    name = "${var.env_prefix}-ec2-role"
-    assume_role_policy = jsonencode({
-        Version = "2012-10-17"
-        Statement = [
-        {
-            Action = "sts:AssumeRole"
-            Effect = "Allow"
-            Principal = {
-            Service = "ec2.amazonaws.com"
-            }
+resource "aws_iam_role" "this" {
+  name = "${var.env_prefix}-ec2-role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "ec2.amazonaws.com"
         }
-        ]
-    })
+      }
+    ]
+  })
 }
 
-resource "aws_iam_policy" "ec2_ssm_custom_policy" {
+resource "aws_iam_policy" "this" {
   name        = "${var.env_prefix}-ec2-ssm-policy"
   description = "Custom policy allowing EC2 instance to use SSM and Parameter Store"
   policy      = jsonencode({
@@ -64,12 +64,12 @@ resource "aws_iam_policy" "ec2_ssm_custom_policy" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "ec2_ssm_custom" {
-  role       = aws_iam_role.ec2_role.name
-  policy_arn = aws_iam_policy.ec2_ssm_custom_policy.arn
+resource "aws_iam_role_policy_attachment" "this" {
+  role       = aws_iam_role.this.name
+  policy_arn = aws_iam_policy.this.arn
 }
 
-resource "aws_iam_instance_profile" "ec2_instance_profile" {
-    name = "${var.env_prefix}-ec2-instance-profile"
-    role = aws_iam_role.ec2_role.name
+resource "aws_iam_instance_profile" "this" {
+  name = "${var.env_prefix}-ec2-instance-profile"
+  role = aws_iam_role.this.name
 }

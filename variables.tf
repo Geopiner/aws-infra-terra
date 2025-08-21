@@ -42,3 +42,19 @@ variable "avail_zone" {
   description = "AWS availability zone"
   type        = string
 }
+
+variable "user_data" {
+  type = string
+  default = <<-EOF
+    #!/bin/bash
+    sudo dnf update -y
+    sudo dnf install -y amazon-ssm-agent
+    sudo systemctl enable amazon-ssm-agent
+    sudo systemctl start amazon-ssm-agent
+  EOF
+}
+
+variable "provisioner_inline" {
+  type    = list(string)
+  default = ["export ENV=dev", "mkdir newdir"]
+}

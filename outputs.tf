@@ -1,31 +1,25 @@
 output "ec2_public_ip" {
-  description = "The public IP of the EC2 instance"
-  value       = aws_instance.myapp_server.public_ip
+  value = module.ec2.public_ip
 }
 
 output "ec2_instance_id" {
-  description = "The instance ID of the EC2"
-  value       = aws_instance.myapp_server.id
+  value = module.ec2.instance_id
 }
 
 output "iam_instance_profile" {
-  description = "Name of the IAM instance profile attached to EC2"
-  value       = aws_iam_instance_profile.ec2_instance_profile.name
+  value = module.iam.instance_profile_name
 }
 
 output "vpc_id" {
-  description = "The VPC ID"
-  value       = aws_vpc.myapp_vpc.id
+  value = module.vpc.vpc_id
 }
 
 output "subnet_id" {
-  description = "The Subnet ID"
-  value       = aws_subnet.myapp_subnet_1.id
+  value = module.vpc.subnet_id
 }
 
 output "security_group_id" {
-  description = "The Security Group ID"
-  value       = aws_security_group.myapp_sg.id
+  value = module.vpc.security_group_id
 }
 
 output "ec2_ami_id" {
